@@ -7,7 +7,7 @@ var typed = new Typed(".typing", {
 })
 
 /* ===== Aside ===== */
-const nav = document.querySelector(".nav"),
+const nav = document.querySelector(".my-nav"),
     navList = nav.querySelectorAll("li"),
     totalNavList = navList.length,
     allSection = document.querySelectorAll(".section"),
