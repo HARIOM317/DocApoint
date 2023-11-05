@@ -206,7 +206,7 @@ ul {
     padding: 15px 20px;
     font-size: 40px;
     font-family: 'Clicker Script';
-    text-decoration: none;
+    /* text-decoration: none; */
     position: relative;
 }
 
@@ -311,7 +311,7 @@ ul {
     display: block;
     color: var(--text-black-900);
     padding: 5px 15px;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 .aside .nav li a.active {
