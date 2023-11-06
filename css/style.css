@@ -987,11 +987,11 @@ h3.my-profession {
     padding: 5px;
     font-size: 14px;
     text-align: center;
-    accent-color: var(--skin-color);    
+    accent-color: var(--skin-color);
 }
 
 
-.appointment-alert-message{
+.appointment-alert-message {
     width: 100%;
     background: rgb(0, 255, 106);
     padding: 10px 20px;
@@ -1136,6 +1136,20 @@ h3.my-profession {
     .register-form {
         width: 80%;
     }
+
+    .time-slot {
+        font-size: 11px;
+        margin: 3px;
+        padding: 3px;
+    }
+}
+
+@media (max-width:587px) {
+    .time-slot {
+        font-size: 10px;
+        margin: 2px;
+        padding: 2px;
+    }
 }
 
 @media (max-width:459px) {
@@ -1153,6 +1167,20 @@ h3.my-profession {
         height: 40px;
         font-size: 14px;
         line-height: 45px;
+    }
+
+    .time-slot {
+        font-size: 9px;
+        margin: 2px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    input[type=radio] {
+        border: 0px;
+        height: 0.8em;
     }
 }
 

@@ -14,13 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <!-- Style Switcher -->
-    <link rel="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1" disabled>
-    <link rel="stylesheet" href="css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
-    <link rel="stylesheet" href="css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
-    <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
-    <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
-
     <link rel="stylesheet" href="css/style-switcher.css">
 
 
@@ -805,7 +798,7 @@
                                     required>
                             </div>
 
-                            <button type="button" class="my_btn" id="registerDoctor">Register</button>
+                            <button type="submit" class="my_btn" id="registerDoctor">Register</button>
 
                             <div class="register-alert-message" style="margin-top: 10px;">😊 You Have Registered
                                 Successfully!</div>
@@ -841,14 +834,13 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input type="text" name="" id="date-field" placeholder="Select Date"
-                                        onfocus="(this.type='date')" onblur="(this.type='text')" class="input-field"
-                                        required>
-                                </div>
-
-                                <div class="col-md-12">
                                     <input type="text" name="" id="address" placeholder="Enter Your Address"
                                         class="input-field" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="" id="date-field" placeholder="Select Date" onfocus="(this.type='date')"
+                                        onblur="(this.type='text')" class="input-field" required>
                                 </div>
 
 
@@ -960,7 +952,7 @@
                                 </div>
 
                                 <div class="col-md-3" id="appointment-submit" style="margin-top: 10px;">
-                                    <button type="button" class="my_btn" id="submitAppointmentData">Book
+                                    <button type="submit" class="my_btn" id="submitAppointmentData">Book
                                         Appointment</button>
                                 </div>
 
@@ -1155,7 +1147,7 @@
 
                                     <div class="form-item col-12 padd-15">
                                         <div class="form-group">
-                                            <button type="button" class="my_btn" id="submitContactForm">Send
+                                            <button type="submit" class="my_btn" id="submitContactForm">Send
                                                 Message</button>
                                         </div>
                                     </div>
@@ -1199,7 +1191,6 @@
                 </div>
             </section>
 
-
         </div>
 
     </div>
@@ -1222,28 +1213,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-
-    <!-- Script for Contact Form -->
-    <!-- <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzpVKbovEbPtrK1_z2UKyXxs8Vl8Hxf1Xl5tnscLc1EW_XBnA1znQUUM8YGsGg1DtUI/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
-
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    msg.innerHTML = "Message sent successfully!"
-                    setTimeout(function () {
-                        msg.innerHTML = ""
-                    }, 3000)
-
-                    form.reset()
-                })
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script> -->
 
     <!-- For Firebase -->
     <script type="module">
