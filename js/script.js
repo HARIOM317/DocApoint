@@ -80,6 +80,15 @@ document.querySelector(".check-appointment").addEventListener("click", function 
     addBackSection(sectionIndex);
 })
 
+document.querySelector(".show-appointment-form").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
 const navTogglerBtn = document.querySelector(".nav-toggler"),
     aside = document.querySelector(".aside");
 
