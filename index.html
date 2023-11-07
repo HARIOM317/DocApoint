@@ -811,6 +811,8 @@
 
                             <div class="register-alert-message" style="margin-top: 10px;">😊 You Have Registered
                                 Successfully!</div>
+                            <div class="register-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
+                                Fields!</div>
 
                         </form>
                     </div>
@@ -1006,6 +1008,8 @@
 
                                 <div class="contact-alert-message" style="margin-top: 10px;">😊 Message Sent
                                     Successfully!</div>
+                                <div class="contact-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
+                                    Fields!</div>
                             </div>
                         </form>
 
@@ -1054,12 +1058,6 @@
 
                     <div class="appointment-form">
                         <form class="row" id="appointmentForm">
-                            <!-- Alert Message -->
-                            <div class="appointment-alert-message" style="margin-top: 10px; margin-bottom: 10px;">😊
-                                Appointment Booked
-                                Successfully!</div>
-
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="text" name="" id="username" placeholder="Enter Your Name"
@@ -1225,6 +1223,11 @@
                                     Appointment</button>
                             </div>
 
+                            <!-- Alert Message -->
+                            <div class="appointment-alert-message" style="margin-top: 10px; margin-bottom: 10px;">😊
+                                Appointment Booked
+                                Successfully!</div>
+
                         </form>
                     </div>
 
@@ -1332,10 +1335,10 @@
             // remove submit message
             setTimeout(() => {
                 document.querySelector('.appointment-alert-message').style.display = 'none';
-            }, 3000);
 
-            // reset the form
-            document.getElementById('appointmentForm').reset();
+                // reset the form
+                document.getElementById('appointmentForm').reset();
+            }, 3000);
         });
 
 
@@ -1347,23 +1350,38 @@
             var subject = document.getElementById('contact-subject').value;
             var message = document.getElementById('contact-message').value;
 
-            addDoc(collection(db, "contact_messages"), {
-                name: name,
-                email: email,
-                subject: subject,
-                message: message,
-            });
+            if (
+                name.trim() !== '' &&
+                email.trim() !== '' &&
+                subject.trim() !== '' &&
+                message.trim() !== ''
+            ) {
+                addDoc(collection(db, "contact_messages"), {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                });
 
-            // show submit message
-            document.querySelector('.contact-alert-message ').style.display = 'block';
+                // show submit message
+                document.querySelector('.contact-alert-message').style.display = 'block';
 
-            // remove submit message
-            setTimeout(() => {
-                document.querySelector('.contact-alert-message ').style.display = 'none';
-            }, 3000);
+                // remove submit message
+                setTimeout(() => {
+                    document.querySelector('.contact-alert-message').style.display = 'none';
 
-            // reset the form
-            document.getElementById('contactForm').reset();
+                    // reset the form
+                    document.getElementById('contactForm').reset();
+                }, 3000);
+            } else {
+                // show submit message
+                document.querySelector('.contact-alert-message2').style.display = 'block';
+
+                // remove submit message
+                setTimeout(() => {
+                    document.querySelector('.contact-alert-message2').style.display = 'none';
+                }, 3000);
+            }
         });
 
 
@@ -1376,29 +1394,48 @@
             var doctorSpecialties = document.getElementById('doctor-specialties').value;
             var doctorAddress = document.getElementById('doctor-address').value;
 
-            addDoc(collection(db, "doctors"), {
-                doctorName: doctorName,
-                doctorNumber: doctorNumber,
-                doctorQualification: doctorQualification,
-                doctorSpecialties: doctorSpecialties,
-                doctorAddress: doctorAddress,
-            });
+            if (
+                doctorName.trim() !== '' &&
+                doctorNumber.trim() !== '' &&
+                doctorQualification.trim() !== '' &&
+                doctorSpecialties.trim() !== '' &&
+                doctorAddress.trim() !== ''
+            ) {
+                addDoc(collection(db, "doctors"), {
+                    doctorName: doctorName,
+                    doctorNumber: doctorNumber,
+                    doctorQualification: doctorQualification,
+                    doctorSpecialties: doctorSpecialties,
+                    doctorAddress: doctorAddress,
+                });
 
 
-            // show submit message
-            document.querySelector('.register-alert-message').style.display = 'block';
+                // show submit message
+                document.querySelector('.register-alert-message').style.display = 'block';
 
-            // remove submit message
-            setTimeout(() => {
-                document.querySelector('.register-alert-message').style.display = 'none';
-            }, 3000);
+                // remove submit message
+                setTimeout(() => {
+                    document.querySelector('.register-alert-message').style.display = 'none';
 
-            // reset the form
-            document.getElementById('registerForm').reset();
+                    // reset the form
+                    document.getElementById('registerForm').reset();
+                }, 3000);
+            } else {
+                // Handle the case where required fields are empty (e.g., show an error message)
+                // show alert message
+                document.querySelector('.register-alert-message2').style.display = 'block';
+
+                // remove alert message
+                setTimeout(() => {
+                    document.querySelector('.register-alert-message2').style.display = 'none';
+                }, 3000);
+            }
+
+
         });
 
 
-        // ------------- For Booked Appointments -----------------
+        // ------------- For Already Booked Appointments -----------------
         const timeList = []; // The list to store the time
         const dateList = []; // The list to store the date
         const dateTimeList = []; // The list to store the date and time
@@ -1446,25 +1483,25 @@
 
 
         const getAppointmentsDateAndTime = async () => {
-                const appointmentsCollection = collection(db, "appointments");
+            const appointmentsCollection = collection(db, "appointments");
 
-                try {
-                    const querySnapshot = await getDocs(appointmentsCollection);
+            try {
+                const querySnapshot = await getDocs(appointmentsCollection);
 
 
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        if (data.dateTime) {
-                            dateTimeList.push(data.dateTime);
-                        }
-                    });
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.dateTime) {
+                        dateTimeList.push(data.dateTime);
+                    }
+                });
 
-                    console.log(dateList);
+                console.log(dateList);
 
-                } catch (error) {
-                    console.error("Error getting documents: ", error);
-                }
-            };
+            } catch (error) {
+                console.error("Error getting documents: ", error);
+            }
+        };
 
         getAppointmentsTime();
         getAppointmentsDate();
@@ -1492,8 +1529,6 @@
             });
         });
     </script>
-
-
 
 </body>
 

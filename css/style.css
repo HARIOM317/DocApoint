@@ -949,10 +949,6 @@ h3.my-profession {
     display: none;
 }
 
-.booked-time-color{
-    color: red;;
-}
-
 
 .register-alert-message {
     width: 100%;
@@ -964,9 +960,29 @@ h3.my-profession {
     display: none;
 }
 
+.register-alert-message2 {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
 .contact-alert-message {
     width: 100%;
     background: rgb(0, 255, 106);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.contact-alert-message2 {
+    width: 100%;
+    background: red;
     padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
