@@ -120,21 +120,8 @@ function closeModal() {
 
 
 // for appointment form
-function showAppointmentModal() {
-    document.querySelector('.overlay2').classList.add('show-overlay2');
-    document.querySelector('.appointment-form').classList.add('show-appointment-form');
-}
-
-function closeCloseAppointmentModal() {
-    document.querySelector('.overlay2').classList.remove('show-overlay2');
-    document.querySelector('.appointment-form').classList.remove('show-appointment-form');
-}
-
 var closeRegistration = document.querySelector('.close');
 closeRegistration.addEventListener('click', closeModal);
-
-var closeAppointment = document.querySelector('.close-apoint');
-closeAppointment.addEventListener('click', closeCloseAppointmentModal);
 
 
 // Setting date limit in calendar

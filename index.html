@@ -1082,7 +1082,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input type="text" name="" id="date-field" placeholder="Select Date"
+                                    <input type="date" name="" id="date-field" placeholder="Select Date"
                                         onfocus="(this.type='date')" onblur="(this.type='text')" class="input-field"
                                         required>
                                 </div>
@@ -1239,20 +1239,21 @@
                                         <p style="color: var(--skin-color); font-family: 'Titillium Web';">© 2023
                                             DocApoint,
                                             Inc</p>
-                                        <p style="color: var(--text-black-700); font-weight: 400; font-family: 'Titillium Web';">
+                                        <p
+                                            style="color: var(--text-black-700); font-weight: 400; font-family: 'Titillium Web';">
                                             xyz@gmail.com<br>+91 0000000000</p>
                                     </span>
                                 </div>
-                    
+
                                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img src="images/icon/twitter.png"
-                                                alt="" width="40px"></a></li>
-                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img src="images/icon/facebook.png"
-                                                alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/twitter.png" alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/facebook.png" alt="" width="40px"></a></li>
                                     <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
                                                 src="images/icon/instagram.png" alt="" width="40px"></a></li>
-                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img src="images/icon/whatsapp.png"
-                                                alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/whatsapp.png" alt="" width="40px"></a></li>
                                 </ul>
                             </footer>
                         </div>
@@ -1286,7 +1287,7 @@
     <!-- For Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-        import { getFirestore, setDoc, addDoc, doc, collection } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+        import { getFirestore, setDoc, addDoc, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
 
         const firebaseConfig = {
@@ -1313,6 +1314,7 @@
             var date = document.getElementById('date-field').value;
             var address = document.getElementById('address').value;
             var time = document.querySelector('input[name="appointment-time"]:checked').value;
+            var dateTime = document.getElementById('date-field').value + " " + document.querySelector('input[name="appointment-time"]:checked').value;
 
             addDoc(collection(db, "appointments"), {
                 name: name,
@@ -1320,7 +1322,8 @@
                 age: age,
                 date: date,
                 address: address,
-                time: time
+                time: time,
+                dateTime: dateTime
             });
 
             // show submit message
@@ -1394,6 +1397,100 @@
             document.getElementById('registerForm').reset();
         });
 
+
+        // ------------- For Booked Appointments -----------------
+        const timeList = []; // The list to store the time
+        const dateList = []; // The list to store the date
+        const dateTimeList = []; // The list to store the date and time
+
+        const getAppointmentsTime = async () => {
+            const appointmentsCollection = collection(db, "appointments");
+
+            try {
+                const querySnapshot = await getDocs(appointmentsCollection);
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.time) {
+                        timeList.push(data.time);
+                    }
+                });
+
+                console.log(timeList);
+
+            } catch (error) {
+                console.error("Error getting documents: ", error);
+            }
+        };
+
+        const getAppointmentsDate = async () => {
+            const appointmentsCollection = collection(db, "appointments");
+
+            try {
+                const querySnapshot = await getDocs(appointmentsCollection);
+
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.date) {
+                        dateList.push(data.date);
+                    }
+                });
+
+                console.log(dateList);
+
+            } catch (error) {
+                console.error("Error getting documents: ", error);
+            }
+        };
+
+
+        const getAppointmentsDateAndTime = async () => {
+                const appointmentsCollection = collection(db, "appointments");
+
+                try {
+                    const querySnapshot = await getDocs(appointmentsCollection);
+
+
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        if (data.dateTime) {
+                            dateTimeList.push(data.dateTime);
+                        }
+                    });
+
+                    console.log(dateList);
+
+                } catch (error) {
+                    console.error("Error getting documents: ", error);
+                }
+            };
+
+        getAppointmentsTime();
+        getAppointmentsDate();
+        getAppointmentsDateAndTime();
+
+
+        // Get the date field and all radio buttons
+        const dateField = document.getElementById("date-field");
+        const radioButtons = document.querySelectorAll('input[type="radio"][name="appointment-time"]');
+
+        // Add an event listener to detect changes in the date field
+        dateField.addEventListener("change", function () {
+            const pickedDate = dateField.value;
+
+            // Iterate through the radio buttons
+            radioButtons.forEach(function (radioButton) {
+                const radioValue = radioButton.value;
+
+                // Check if the picked date is available in dateList and the radio button value is available in timeList
+                if (dateList.includes(pickedDate) && timeList.includes(radioValue) && dateTimeList.includes(pickedDate + " " + radioValue)) {
+                    radioButton.disabled = true; // Disable the radio button
+                } else {
+                    radioButton.disabled = false; // Enable the radio button
+                }
+            });
+        });
     </script>
 
 
