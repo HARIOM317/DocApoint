@@ -119,11 +119,10 @@
                                 Prioritize your well-being – experience
                                 the ease of modern healthcare today.</p>
 
-
-                            <!-- Services -->
+                            <!-- Appointment card for user -->
                             <div class="container px-4 py-5 feature-style margin-bottom" id="feature">
                                 <h2 class="pb-2 border-bottom">Appointment</h2>
-                                <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+                                <div class="row g-4 py-5">
                                     <div class="col d-flex align-items-start">
                                         <div
                                             class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
@@ -135,28 +134,7 @@
                                                 range of
                                                 doctors, choose your preferred specialist, and book effortlessly.</p>
                                             <a href="#appointment" class="btn btn-danger book-appointment"
-                                                data-bs-toggle="modal" data-bs-target="#loginModal"
-                                                data-section-index="1">
-                                                Make Appointment
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col d-flex align-items-start">
-                                        <div
-                                            class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                                        </div>
-                                        <div>
-                                            <h3 class="fs-2">Doctor</h3>
-                                            <p class="g-font2 justify-text">Effortlessly manage your schedule and offer
-                                                convenient, secure appointments. Connect with patients seeking your
-                                                expertise and provide top-notch healthcare services in a digital age.
-                                            </p>
-                                            <a href="#appointment" class="btn btn-danger check-appointment"
-                                                data-bs-toggle="modal" data-bs-target="#loginModal"
-                                                data-section-index="1">
-                                                Check Appointment
-                                            </a>
+                                                data-section-index="1">Make Appointment</a>
                                         </div>
                                     </div>
 
@@ -755,7 +733,7 @@
             </section>
 
             <!-- Appointment Section -->
-            <section class="project section" id="appointment">
+            <section class="section" id="appointment">
                 <div class="container">
                     <div class="row">
                         <div class="section-title padd-15">
@@ -769,54 +747,7 @@
                             style="border-radius: 20px; font-family: 'Poppins'; font-size: 16px; font-weight: 500; padding: 12px 35px;">
                             Book Appointment
                         </a>
-
-                        <button class="btn btn-danger" type="button"
-                            style="border-radius: 20px; font-family: 'Poppins'; font-size: 16px; font-weight: 500; padding: 12px 35px;"
-                            onclick="showModal()">Register as Doctor</button>
                     </div>
-
-
-                    <!-- Register Form -->
-                    <div class="overlay" onclick="closeModal()"></div>
-
-                    <div class="register-form">
-                        <span class="close">&times;</span>
-
-                        <form action="" id="registerForm">
-                            <div>
-                                <input type="text" name="" id="doctor-name" placeholder="Enter Your Name" required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-number" placeholder="Enter Mobile Number"
-                                    required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-qualification"
-                                    placeholder="Enter Your Qualification" required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-specialties" placeholder="Enter Your Specialties"
-                                    required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-address" placeholder="Enter Your Address"
-                                    required>
-                            </div>
-
-                            <button type="submit" class="my_btn" id="registerDoctor">Register</button>
-
-                            <div class="register-alert-message" style="margin-top: 10px;">😊 You Have Registered
-                                Successfully!</div>
-                            <div class="register-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
-                                Fields!</div>
-
-                        </form>
-                    </div>
-
 
                     <!-- Our Candidates -->
                     <div class="row margin-top-bottom">
@@ -1264,12 +1195,96 @@
                 </div>
             </section>
 
+            <!-- Login Form -->
+            <section class="section" id="login-section">
+
+                <div class="appointment-form-margin">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Login</h2>
+                        </div>
+                    </div>
+
+                    <div class="login-form">
+                        <form class="row" id="loginForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" name="" id="username" placeholder="Enter ID" class="input-field"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="password" name="" id="phoneNumber" placeholder="Enter Password"
+                                        class="input-field" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" id="login-submit" style="margin-top: 10px;">
+                                <button type="submit" class="my_btn" id="submitLoginData">Login</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="container" style="color: var(--text-black-900);">If you are a Admin then click here to 
+                        <button class="admin-btn" onclick="showModal()"">Register as Admin</button>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div class="overlay" onclick="closeModal()"></div>
+                    
+                    <div class="register-form">
+                        <span class="close">&times;</span>
+                    
+                        <form action="" id="registerForm">
+                            <div>
+                                <input type="text" name="" id="admin-name" placeholder="Enter Your Name" required>
+                            </div>
+                    
+                            <div>
+                                <input type="text" name="" id="admin-number" placeholder="Enter Mobile Number" required>
+                            </div>
+
+                            <div>
+                                <input type="text" name="" id="admin-clinic" placeholder="Enter Clinic Name" required>
+                            </div>
+                    
+                            <div>
+                                <input type="text" name="" id="admin-qualification" placeholder="Enter Your Qualification" required>
+                            </div>
+                    
+                            <div>
+                                <input type="text" name="" id="admin-specialties" placeholder="Enter Your Specialties" required>
+                            </div>
+                    
+                            <div>
+                                <input type="text" name="" id="admin-address" placeholder="Enter Your Address" required>
+                            </div>
+                    
+                            <button type="submit" class="my_btn" id="registerAdmin">Register</button>
+                    
+                            <div class="register-alert-message" style="margin-top: 10px;">😊 You Have Registered
+                                Successfully!</div>
+                            <div class="register-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
+                                Fields!</div>
+                    
+                        </form>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
     </div>
 
+
     <!-- Style Switcher -->
     <div class="style-switcher">
+        <div class="user-login s-icon">
+            <a href="#login-section" class="show-login-form" data-section-index="1"
+                style="text-decoration: none; color: var(--text-black-900);"><i class="fas fa-user"></i></a>
+        </div>
+
         <div class="day-night s-icon">
             <i class="fas"></i>
         </div>
@@ -1386,17 +1401,18 @@
 
 
         // function to store data of doctors who will register on DocApoint platform
-        registerDoctor.addEventListener('click', (e) => {
-
-            var doctorName = document.getElementById('doctor-name').value;
-            var doctorNumber = document.getElementById('doctor-number').value;
-            var doctorQualification = document.getElementById('doctor-qualification').value;
-            var doctorSpecialties = document.getElementById('doctor-specialties').value;
-            var doctorAddress = document.getElementById('doctor-address').value;
+        registerAdmin.addEventListener('click', (e) => {
+            var doctorName = document.getElementById('admin-name').value;
+            var doctorNumber = document.getElementById('admin-number').value;
+            var doctorClinic = document.getElementById('admin-clinic').value;
+            var doctorQualification = document.getElementById('admin-qualification').value;
+            var doctorSpecialties = document.getElementById('admin-specialties').value;
+            var doctorAddress = document.getElementById('admin-address').value;
 
             if (
                 doctorName.trim() !== '' &&
                 doctorNumber.trim() !== '' &&
+                doctorClinic.trim() !== '' &&
                 doctorQualification.trim() !== '' &&
                 doctorSpecialties.trim() !== '' &&
                 doctorAddress.trim() !== ''
@@ -1404,6 +1420,7 @@
                 addDoc(collection(db, "doctors"), {
                     doctorName: doctorName,
                     doctorNumber: doctorNumber,
+                    doctorClinic: doctorClinic,
                     doctorQualification: doctorQualification,
                     doctorSpecialties: doctorSpecialties,
                     doctorAddress: doctorAddress,

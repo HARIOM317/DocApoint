@@ -33,13 +33,13 @@ for (let i = 0; i < totalNavList; i++) {
     })
 }
 
-function removeBackSection(){
+function removeBackSection() {
     for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.remove("back-section");
     }
 }
 
-function addBackSection(num){
+function addBackSection(num) {
     allSection[num].classList.add("back-section");
 }
 
@@ -51,43 +51,16 @@ function showSection(element) {
     document.querySelector("#" + target).classList.add("active");
 }
 
-function updateNav(element){
-    for(let i = 0; i < totalNavList; i++){
+function updateNav(element) {
+    for (let i = 0; i < totalNavList; i++) {
         navList[i].querySelector("a").classList.remove("active");
         const target = element.getAttribute("href").split("#")[1];
 
-        if(target === navList[i].querySelector("a").getAttribute("href").split("#")[1]){
+        if (target === navList[i].querySelector("a").getAttribute("href").split("#")[1]) {
             navList[i].querySelector("a").classList.add("active");
         }
     }
 }
-
-document.querySelector(".book-appointment").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
-
-document.querySelector(".check-appointment").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
-
-document.querySelector(".show-appointment-form").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
 
 const navTogglerBtn = document.querySelector(".nav-toggler"),
     aside = document.querySelector(".aside");
@@ -106,8 +79,36 @@ function asideSectionTogglerBtn() {
 }
 
 
+// Moving on another page
+document.querySelector(".book-appointment").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
+document.querySelector(".show-appointment-form").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
+document.querySelector(".show-login-form").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
+// -----------------------------------------------------------------
+
+
 // for registration form
-function showModal(){
+function showModal() {
     document.querySelector('.overlay').classList.add('show-overlay');
     document.querySelector('.register-form').classList.add('show-register-form');
 }
@@ -117,11 +118,10 @@ function closeModal() {
     document.querySelector('.register-form').classList.remove('show-register-form');
 }
 
-
-
-// for appointment form
 var closeRegistration = document.querySelector('.close');
 closeRegistration.addEventListener('click', closeModal);
+
+// -------------------------------------------------------------------
 
 
 // Setting date limit in calendar
