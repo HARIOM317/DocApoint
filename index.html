@@ -1408,6 +1408,7 @@
             var doctorQualification = document.getElementById('admin-qualification').value;
             var doctorSpecialties = document.getElementById('admin-specialties').value;
             var doctorAddress = document.getElementById('admin-address').value;
+            var type = "Admin"
 
             if (
                 doctorName.trim() !== '' &&
@@ -1424,6 +1425,7 @@
                     doctorQualification: doctorQualification,
                     doctorSpecialties: doctorSpecialties,
                     doctorAddress: doctorAddress,
+                    type: type
                 });
 
 
@@ -1436,6 +1438,10 @@
 
                     // reset the form
                     document.getElementById('registerForm').reset();
+
+                    // show login page
+                    document.querySelector('.overlay').classList.remove('show-overlay');
+                    document.querySelector('.register-form').classList.remove('show-register-form');
                 }, 3000);
             } else {
                 // Handle the case where required fields are empty (e.g., show an error message)
