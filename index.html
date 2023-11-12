@@ -24,6 +24,19 @@
 
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+
+
+    <!-- disable browser back button on login as a guest -->
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+
+        setTimeout("preventBack()", 0);
+
+        window.onunload = function () { null };
+    </script>
 </head>
 
 <body>
@@ -1209,12 +1222,12 @@
                         <form class="row" id="loginForm">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" name="" id="username" placeholder="Enter ID" class="input-field"
-                                        required>
+                                    <input type="text" name="" id="login-phone" placeholder="Enter Phone"
+                                        class="input-field" required>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <input type="password" name="" id="phoneNumber" placeholder="Enter Password"
+                                    <input type="password" name="" id="login-pass" placeholder="Enter Password"
                                         class="input-field" required>
                                 </div>
                             </div>
@@ -1226,21 +1239,22 @@
                         </form>
                     </div>
 
-                    <div class="container" style="color: var(--text-black-900);">If you are a Admin then click here to 
+                    <div class="container" style="color: var(--text-black-900);">If you are a Admin then click here to
                         <button class="admin-btn" onclick="showModal()"">Register as Admin</button>
                     </div>
 
                     <!-- Register Form -->
-                    <div class="overlay" onclick="closeModal()"></div>
-                    
+                    <div class=" overlay" onclick="closeModal()">
+                    </div>
+
                     <div class="register-form">
                         <span class="close">&times;</span>
-                    
+
                         <form action="" id="registerForm">
                             <div>
                                 <input type="text" name="" id="admin-name" placeholder="Enter Your Name" required>
                             </div>
-                    
+
                             <div>
                                 <input type="text" name="" id="admin-number" placeholder="Enter Mobile Number" required>
                             </div>
@@ -1248,26 +1262,33 @@
                             <div>
                                 <input type="text" name="" id="admin-clinic" placeholder="Enter Clinic Name" required>
                             </div>
-                    
+
                             <div>
-                                <input type="text" name="" id="admin-qualification" placeholder="Enter Your Qualification" required>
+                                <input type="text" name="" id="admin-qualification"
+                                    placeholder="Enter Your Qualification" required>
                             </div>
-                    
+
                             <div>
-                                <input type="text" name="" id="admin-specialties" placeholder="Enter Your Specialties" required>
+                                <input type="text" name="" id="admin-specialties" placeholder="Enter Your Specialties"
+                                    required>
                             </div>
-                    
+
                             <div>
                                 <input type="text" name="" id="admin-address" placeholder="Enter Your Address" required>
                             </div>
-                    
+
+                            <div>
+                                <input type="password" name="" id="admin-password" placeholder="Create a Password"
+                                    required>
+                            </div>
+
                             <button type="submit" class="my_btn" id="registerAdmin">Register</button>
-                    
+
                             <div class="register-alert-message" style="margin-top: 10px;">😊 You Have Registered
                                 Successfully!</div>
                             <div class="register-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
                                 Fields!</div>
-                    
+
                         </form>
                     </div>
                 </div>
@@ -1400,6 +1421,32 @@
         });
 
 
+        // To encrypt or decrypt password
+        const crypt = (salt, text) => {
+            const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+            const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
+            const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+
+            return text
+                .split("")
+                .map(textToChars)
+                .map(applySaltToChar)
+                .map(byteHex)
+                .join("");
+        };
+
+        const decrypt = (salt, encoded) => {
+            const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+            const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
+            return encoded
+                .match(/.{1,2}/g)
+                .map((hex) => parseInt(hex, 16))
+                .map(applySaltToChar)
+                .map((charCode) => String.fromCharCode(charCode))
+                .join("");
+        };
+
+
         // function to store data of doctors who will register on DocApoint platform
         registerAdmin.addEventListener('click', (e) => {
             var doctorName = document.getElementById('admin-name').value;
@@ -1408,7 +1455,11 @@
             var doctorQualification = document.getElementById('admin-qualification').value;
             var doctorSpecialties = document.getElementById('admin-specialties').value;
             var doctorAddress = document.getElementById('admin-address').value;
-            var type = "Admin"
+            var doctorPassword = document.getElementById('admin-password').value;
+            var type = "Admin";
+
+
+            var encryptPass = crypt(doctorPassword, doctorPassword);
 
             if (
                 doctorName.trim() !== '' &&
@@ -1416,7 +1467,8 @@
                 doctorClinic.trim() !== '' &&
                 doctorQualification.trim() !== '' &&
                 doctorSpecialties.trim() !== '' &&
-                doctorAddress.trim() !== ''
+                doctorAddress.trim() !== '' &&
+                doctorPassword.trim() !== ''
             ) {
                 addDoc(collection(db, "doctors"), {
                     doctorName: doctorName,
@@ -1425,6 +1477,7 @@
                     doctorQualification: doctorQualification,
                     doctorSpecialties: doctorSpecialties,
                     doctorAddress: doctorAddress,
+                    doctorPassword: encryptPass,
                     type: type
                 });
 
@@ -1453,16 +1506,17 @@
                     document.querySelector('.register-alert-message2').style.display = 'none';
                 }, 3000);
             }
-
-
         });
 
 
-        // ------------- For Already Booked Appointments -----------------
+        // Get data from firebase and store it in a list
         const timeList = []; // The list to store the time
         const dateList = []; // The list to store the date
         const dateTimeList = []; // The list to store the date and time
+        const doctorPhone = [];
+        const doctorPass = [];
 
+        // function to get all appointments time and store it in a list
         const getAppointmentsTime = async () => {
             const appointmentsCollection = collection(db, "appointments");
 
@@ -1483,6 +1537,7 @@
             }
         };
 
+        // function to get all appointments date and store it in a list
         const getAppointmentsDate = async () => {
             const appointmentsCollection = collection(db, "appointments");
 
@@ -1505,6 +1560,7 @@
         };
 
 
+        // function to get all appointments date and time and store it in a list
         const getAppointmentsDateAndTime = async () => {
             const appointmentsCollection = collection(db, "appointments");
 
@@ -1530,6 +1586,52 @@
         getAppointmentsDate();
         getAppointmentsDateAndTime();
 
+
+        // for login
+        document.getElementById("submitLoginData").onclick = async () => {
+            var phoneNumber = document.getElementById('login-phone').value;
+            var password = document.getElementById('login-pass').value;
+
+            var decryptPass = crypt(password, password);
+            var isLogin = false;
+
+
+
+            const doctorCollection = collection(db, "doctors");
+
+            try {
+                const querySnapshot = await getDocs(doctorCollection);
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.doctorNumber == phoneNumber && data.doctorPassword == decryptPass) {
+                        isLogin = true;
+                        localStorage.setItem('phone', JSON.stringify(data.doctorName));
+                    } else {
+                        isLogin = false;
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error getting documents: ", error);
+            }
+
+
+            if (isLogin) {
+                console.log("Value of isLogin : ", isLogin);
+                 setTimeout(() => {
+                    window.location.href = "admin.html";
+                }, 3000);
+            } else {
+                console.log("Value of isLogin : ", isLogin);
+                alert("Invalid Phone Number or Password!");
+            }
+
+        };
+
+        
+
+        // ------------- For Already Booked Appointments -----------------
 
         // Get the date field and all radio buttons
         const dateField = document.getElementById("date-field");
