@@ -79,65 +79,16 @@ function asideSectionTogglerBtn() {
 }
 
 
-// Moving on another page
-document.querySelector(".book-appointment").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
-
-document.querySelector(".show-appointment-form").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
-
-document.querySelector(".show-login-form").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
-
-// -----------------------------------------------------------------
-
-
-// for admin registration form
-function showModal() {
-    document.querySelector('.overlay').classList.add('show-overlay');
-    document.querySelector('.register-form').classList.add('show-register-form');
+// for doctor registration form
+function showModal2() {
+    document.querySelector('.overlay2').classList.add('show-overlay2');
+    document.querySelector('.register-form2').classList.add('show-register-form2');
 }
 
-function closeModal() {
-    document.querySelector('.overlay').classList.remove('show-overlay');
-    document.querySelector('.register-form').classList.remove('show-register-form');
+function closeModal2() {
+    document.querySelector('.overlay2').classList.remove('show-overlay2');
+    document.querySelector('.register-form2').classList.remove('show-register-form2');
 }
 
-var closeRegistration = document.querySelector('.close');
-closeRegistration.addEventListener('click', closeModal);
-
-// -------------------------------------------------------------------
-
-
-// Setting date limit in calendar
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
-var yyyy = today.getFullYear();
-
-if (dd < 10) {
-    dd = '0' + dd;
-}
-
-if (mm < 10) {
-    mm = '0' + mm;
-}
-
-today = yyyy + '-' + mm + '-' + dd;
-document.getElementById("date-field").setAttribute("min", today);
-
+var closeRegistration2 = document.querySelector('.close2');
+closeRegistration2.addEventListener('click', closeModal2);

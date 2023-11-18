@@ -804,7 +804,7 @@ h3.my-profession {
 
 
 
-/* register form */
+/* admin register form */
 .overlay {
     width: 100%;
     height: 100vh;
@@ -876,6 +876,79 @@ h3.my-profession {
     top: 50%;
 }
 
+
+
+/* doctor register form */
+.overlay2 {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.register-form2 .close2 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.register-form2 {
+    width: 50%;
+    background-color: var(--bg-black-900);
+    color: var(--text-black-900);
+    padding: 30px 20px;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 20px 1.5px black;
+    transition: 0.75s;
+    z-index: 9;
+}
+
+.register-form2 input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid var(--bg-black-50);
+    padding: 10px 25px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--text-black-900);
+    background: var(--bg-black-100);
+}
+
+.register-form2 input:focus {
+    box-shadow: 0 0 30px rgba(16, 15, 27, 0.15);
+    border: 1.5px solid var(--text-black-700);
+}
+
+.register-form2 span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--text-black-900);
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.show-overlay2 {
+    opacity: 1;
+    z-index: 1;
+}
+
+.show-register-form2 {
+    top: 50%;
+}
 
 
 /* Appointment form */
@@ -951,7 +1024,7 @@ h3.my-profession {
     border: 0px;
 }
 
-.admin-btn:hover{
+.admin-btn:hover {
     text-decoration: underline;
 }
 
@@ -969,6 +1042,15 @@ h3.my-profession {
     display: none;
 }
 
+.appointment-alert-message2 {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
 
 .register-alert-message {
     width: 100%;
@@ -1010,7 +1092,147 @@ h3.my-profession {
     display: none;
 }
 
+.time-schedule-alert-message {
+    width: 100%;
+    background: rgb(0, 255, 106);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
 
+.time-schedule-alert-message2 {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+/* For dropdown list */
+/* Style for the dropdown container */
+.dropdown-container {
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Style for the dropdown button */
+.dropdown-button {
+    border: 1px solid var(--bg-black-25);
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: var(--bg-black-100);
+    color: var(--text-black-900);
+    font-weight: bold;
+}
+
+/* Style for dropdown list options */
+.dropdown-option {
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    color: var(--text-black-900);
+    background-color: var(--bg-black-100);
+}
+
+/* Hover effect on dropdown options */
+.dropdown-option:hover {
+    background-color: var(--bg-black-900);
+}
+
+
+/* For dropdown list 2 */
+/* Style for the dropdown container */
+.dropdown-container2 {
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Style for the dropdown button */
+.dropdown-button2 {
+    border: 1px solid var(--bg-black-25);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 12px 25px;
+    background-color: var(--bg-black-100);
+    color: var(--text-black-900);
+    font-weight: bold;
+    width: 100%;
+}
+
+/* Style for dropdown list options */
+.dropdown-option2 {
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    color: var(--text-black-900);
+    background-color: var(--bg-black-100);
+}
+
+/* Hover effect on dropdown options */
+.dropdown-option2:hover {
+    background-color: var(--bg-black-900);
+}
+
+
+
+
+/* Time input field */
+.time-input-field {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid var(--bg-black-50);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--text-black-900);
+    background: var(--bg-black-100);
+}
+
+.time-input-field:focus {
+    box-shadow: 0 0 30px rgba(16, 15, 27, 0.15);
+    border: 1.5px solid var(--text-black-700);
+}
+
+.time-heading {
+    color: var(--skin-color);
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.time-label {
+    color: var(--text-black-900);
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+/* For Table */
+th {
+    color: var(--skin-color);
+    font-weight: bold;
+}
+
+td {
+    color: var(--text-black-900);
+}
+
+.table-row {
+    background-color: var(--bg-black-100);
+}
 
 
 /* Media Query For Responsiveness */
@@ -1130,6 +1352,10 @@ h3.my-profession {
     }
 
     .register-form {
+        width: 80%;
+    }
+
+    .register-form2 {
         width: 80%;
     }
 

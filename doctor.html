@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - DocApoint</title>
+    <title>Doctor - DocApoint</title>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/style.css">
@@ -48,7 +48,8 @@
 
             <ul class="my-nav">
                 <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
-                <li><a href="#manage-doctors"><i class="fa fa-user-md"></i>Doctors</a></li>
+                <li><a href="#time-schedule"><i class="fa fa-clock"></i>Schedule Time</a></li>
+                <li><a href="#appointments"><i class="fa fa-user-md"></i>Appointments</a></li>
                 <li><a href="#profile"><i class="fa fa-user"></i>Profile</a></li>
             </ul>
         </div>
@@ -364,27 +365,148 @@
                 </div>
             </section>
 
-            <!-- Manage Doctor Section -->
-            <section class="section" id="manage-doctors">
+            <!-- Time Scheduling Section -->
+            <section class="section" id="time-schedule">
                 <div class="container">
                     <div class="row">
                         <div class="section-title padd-15">
-                            <h2>Manage Doctors</h2>
+                            <h2>Schedule Your Time</h2>
                         </div>
                     </div>
 
-                    <div class="d-grid gap-3 col-6 mx-auto">
-                        <button class="my_btn" onclick="showModal2()">Register Doctor</button>
+                    <!-- Time Scheduling Form For Doctors -->
+                    <div class="row">
+                        <form id="timeSchedulingForm">
+                            <div class="container">
+                                <h3 class="time-heading">Morning</h3>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="morningFrom" class="time-label">From</label>
+                                        <input type="text" name="morningFrom" id="morning-from"
+                                            placeholder="Select Starting Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="morningTo" class="time-label">To</label>
+                                        <input type="text" name="morningTo" id="morning-to"
+                                            placeholder="Select Ending Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <h3 class="time-heading">Afternoon</h3>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="afternoonFrom" class="time-label">From</label>
+                                        <input type="text" name="afternoonFrom" id="afternoon-from"
+                                            placeholder="Select Starting Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="afternoonTo" class="time-label">To</label>
+                                        <input type="text" name="afternoonTo" id="afternoon-to"
+                                            placeholder="Select Ending Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <h3 class="time-heading">Evening</h3>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="eveningFrom" class="time-label">From</label>
+                                        <input type="text" name="eveningFrom" id="evening-from"
+                                            placeholder="Select Starting Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="eveningTo" class="time-label">To</label>
+                                        <input type="text" name="eveningTo" id="evening-to"
+                                            placeholder="Select Ending Time" class="time-input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-item col-12 padd-15">
+                                <div class="form-group">
+                                    <button type="submit" class="my_btn" id="scheduleTime">Schedule Time</button>
+                                </div>
+                            </div>
+
+
+                            <div class="time-schedule-alert-message" style="margin-top: 10px;">😊 Your Appointment Time
+                                Scheduled Successfully!
+                            </div>
+
+                            <div class="time-schedule-alert-message2" style="margin-top: 10px;">⚠️ Please Schedule Your
+                                Time in All Shifts!
+                            </div>
+                        </form>
+
                     </div>
 
-                    <!-- Dropdown list -->
-                    <div class="dropdown-container">
-                        <select id="doctorDropdown" class="dropdown-button"></select>
+
+                    <!-- footer -->
+                    <div class="mt-auto footer-style">
+                        <div class="container">
+                            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3"
+                                style="border-top: 2px solid var(--text-black-900);">
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <span class="mb-3 mb-md-0 text-body-secondary g-font1 fw-bold fs-4">
+                                        <p style="color: var(--skin-color); font-family: 'Titillium Web';">© 2023
+                                            DocApoint,
+                                            Inc</p>
+                                        <p
+                                            style="color: var(--text-black-700); font-weight: 400; font-family: 'Titillium Web';">
+                                            xyz@gmail.com<br>+91 0000000000</p>
+                                    </span>
+                                </div>
+
+                                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/twitter.png" alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/facebook.png" alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/instagram.png" alt="" width="40px"></a></li>
+                                    <li class="ms-3"><a class="text-body-secondary white-icon " href="#"><img
+                                                src="images/icon/whatsapp.png" alt="" width="40px"></a></li>
+                                </ul>
+                            </footer>
+                        </div>
                     </div>
 
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section class="section" id="appointments">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Appointments</h2>
+                        </div>
+                    </div>
 
                     <!-- Table -->
-                    <div class="container table-responsive">
+                    <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <th>S. no</th>
@@ -400,63 +522,6 @@
 
                             </tbody>
                         </table>
-                    </div>
-
-
-
-
-
-
-
-
-                    <!-- Register Form -->
-                    <div class="overlay2" onclick="closeModal2()"></div>
-
-                    <div class="register-form2">
-                        <span class="close2">&times;</span>
-
-                        <form id="doctorRegisterForm">
-                            <div>
-                                <input type="text" name="" id="doctor-name" placeholder="Enter Your Name" required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-number" placeholder="Enter Mobile Number"
-                                    required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-clinic" placeholder="Enter Clinic Name" required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-qualification"
-                                    placeholder="Enter Your Qualification" required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-specialties" placeholder="Enter Your Specialties"
-                                    required>
-                            </div>
-
-                            <div>
-                                <input type="text" name="" id="doctor-address" placeholder="Enter Your Address"
-                                    required>
-                            </div>
-
-                            <div>
-                                <input type="password" name="" id="doctor-password" placeholder="Create a Password"
-                                    required>
-                            </div>
-
-                            <button type="submit" class="my_btn" id="registerDoctor">Register</button>
-
-                            <div class="register-alert-message" style="margin-top: 10px;">😊 Doctor Has Registered
-                                Successfully!</div>
-                            <div class="register-alert-message2" style="margin-top: 10px;">⚠️ Please Fill All The
-                                Fields!</div>
-
-                        </form>
                     </div>
 
 
@@ -501,16 +566,11 @@
                             <h2>Profile</h2>
                         </div>
                     </div>
-
-
                 </div>
             </section>
+
         </div>
-
     </div>
-
-
-
 
     <!-- Style Switcher -->
     <div class="style-switcher" style="top: 10px;">
@@ -520,33 +580,11 @@
     </div>
 
 
-    <!-- For Local Storage -->
-    <!-- <script>
-        // Retrieve doctor name from local storage
-        const doctorName = localStorage.getItem('name');
-
-        // Check if there is stored doctor name
-        if (doctorName) {
-            const data = JSON.parse(doctorName);
-            document.getElementById("docName").innerHTML = data;
-        }
-
-        // Retrieve doctor name from local storage
-        // const doctorClinic = localStorage.getItem('clinic');
-
-        // Check if there is stored doctor name
-        // if (doctorClinic) {
-        //     const data = JSON.parse(doctorClinic);
-        //     document.getElementById("docClinic").innerHTML = data;
-        // }
-
-    </script> -->
-
     <!-- Javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"
         integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/admin_script.js"></script>
+    <script src="js/doctor_script.js"></script>
     <script src="js/style-switcher.js"></script>
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -554,8 +592,9 @@
         crossorigin="anonymous"></script>
 
 
-    <!-- For Firebase -->
 
+
+    <!-- For Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
         import { getFirestore, setDoc, addDoc, doc, collection, getDocs, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
@@ -574,9 +613,10 @@
 
         const db = getFirestore(app);
 
+
         // For local storage
         // Retrieve doctor name from local storage
-        const doctorName = localStorage.getItem('adminName');
+        const doctorName = localStorage.getItem('doctorName');
 
         // Check if there is stored doctor name
         if (doctorName) {
@@ -585,157 +625,11 @@
         }
 
 
-
-        // To encrypt or decrypt password
-        const crypt = (salt, text) => {
-            const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
-            const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
-            const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
-
-            return text
-                .split("")
-                .map(textToChars)
-                .map(applySaltToChar)
-                .map(byteHex)
-                .join("");
-        };
-
-        const decrypt = (salt, encoded) => {
-            const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
-            const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
-            return encoded
-                .match(/.{1,2}/g)
-                .map((hex) => parseInt(hex, 16))
-                .map(applySaltToChar)
-                .map((charCode) => String.fromCharCode(charCode))
-                .join("");
-        };
-
-
-        // function to store data of doctors who will register on DocApoint platform
-        registerDoctor.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            var doctorName = document.getElementById('doctor-name').value;
-            var doctorNumber = document.getElementById('doctor-number').value;
-            var doctorClinic = document.getElementById('doctor-clinic').value;
-            var doctorQualification = document.getElementById('doctor-qualification').value;
-            var doctorSpecialties = document.getElementById('doctor-specialties').value;
-            var doctorAddress = document.getElementById('doctor-address').value;
-            var doctorPassword = document.getElementById('doctor-password').value;
-            var type = "Doctor";
-
-            var encryptPass = crypt(doctorPassword, doctorPassword);
-
-            if (
-                doctorName.trim() !== '' &&
-                doctorNumber.trim() !== '' &&
-                doctorClinic.trim() !== '' &&
-                doctorQualification.trim() !== '' &&
-                doctorSpecialties.trim() !== '' &&
-                doctorAddress.trim() !== '' &&
-                doctorPassword.trim() !== ''
-            ) {
-                addDoc(collection(db, "doctors"), {
-                    doctorName: doctorName,
-                    doctorNumber: doctorNumber,
-                    doctorClinic: doctorClinic,
-                    doctorQualification: doctorQualification,
-                    doctorSpecialties: doctorSpecialties,
-                    doctorAddress: doctorAddress,
-                    doctorPassword: encryptPass,
-                    type: type
-                });
-
-
-                // show submit message
-                document.querySelector('.register-alert-message').style.display = 'block';
-
-                // remove submit message
-                setTimeout(() => {
-                    document.querySelector('.register-alert-message').style.display = 'none';
-
-                    // reset the form
-                    document.getElementById('doctorRegisterForm').reset();
-                }, 3000);
-            } else {
-                // Handle the case where required fields are empty (e.g., show an error message)
-                // show alert message
-                document.querySelector('.register-alert-message2').style.display = 'block';
-
-                // remove alert message
-                setTimeout(() => {
-                    document.querySelector('.register-alert-message2').style.display = 'none';
-                }, 3000);
-            }
-        });
-
-        var doctorList = []; // The list to store all registered doctors
-
-        const getRegisteredDoctors = async () => {
-            const appointmentsCollection = collection(db, "doctors");
-            try {
-                onSnapshot(query(appointmentsCollection, where('type', '==', "Doctor")), (querySnapshot) => {
-                    doctorList = querySnapshot.docs.map((doc) => {
-                        const data = doc.data();
-                        return data.doctorName;
-                    });
-
-                    console.log(doctorList);
-
-                    // Update the dropdown options
-                    updateDropdown(doctorList);
-
-                    if (doctorList.length != 0) {
-                        document.querySelector('.dropdown-container').style.display = 'flex';
-                    }
-                });
-            } catch (error) {
-                console.error("Error getting documents: ", error);
-            }
-        };
-
-
-        const updateDropdown = (doctors) => {
-            const dropdown = document.getElementById("doctorDropdown");
-
-            // Clear existing options
-            dropdown.innerHTML = "";
-
-            // Add new options based on the doctors list
-            doctors.forEach((doctor) => {
-                const option = document.createElement("option");
-                option.classList.add("dropdown-option");
-                option.value = doctor;
-                option.text = doctor;
-                dropdown.add(option);
-            });
-        };
-
-
-        getRegisteredDoctors();
-
-
-
-
-
-        const doctorDropdown = document.getElementById('doctorDropdown');
-
-        // Event listener for dropdown change
-        doctorDropdown.addEventListener('change', () => {
-            // Get the selected doctor name from the dropdown
-            const selectedName = doctorDropdown.value;
-
-            // Call the function to fetch appointments data based on the selected doctor name
-            getAppointmentsData(selectedName);
-        });
-
-
-
-        const getAppointmentsData = async (selectedName) => {
+        // ----- Getting all data in Realtime -----
+        const getAppointmentsData = async () => {
             const appointmentsCollection = collection(db, "appointments");
             try {
-                onSnapshot(query(appointmentsCollection, where('doctorName', '==', selectedName)), (querySnapshot) => {
+                onSnapshot(query(appointmentsCollection, where('date', '==', "2023-11-17")), (querySnapshot) => {
                     var users = [];
 
                     querySnapshot.forEach((doc) => {
@@ -752,7 +646,7 @@
             }
         };
 
-        // getAppointmentsData();
+        getAppointmentsData();
 
 
 
@@ -792,6 +686,11 @@
             trow.appendChild(td7);
 
 
+            if (stdNo % 2 == 1) {
+                trow.classList.add("table-row");
+            }
+
+
             tBody.appendChild(trow);
         }
 
@@ -806,6 +705,72 @@
 
         // Call the function to start listening for real-time updates
         getAppointmentsData();
+
+
+
+
+        // function to store data of time schedule into firebase
+        scheduleTime.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            var morningFrom = document.getElementById('morning-from').value;
+            var morningTo = document.getElementById('morning-to').value;
+            var afternoonFrom = document.getElementById('afternoon-from').value;
+            var afternoonTo = document.getElementById('afternoon-to').value;
+            var eveningFrom = document.getElementById('evening-from').value;
+            var eveningTo = document.getElementById('evening-to').value;
+
+            // getting current date
+            const currentDate = new Date();
+
+            // Get the components of the date
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(currentDate.getDate()).padStart(2, '0');
+
+            // Format the date as "yyyy-mm-dd"
+            const formattedDate = `${year}-${month}-${day}`;
+
+
+            if (
+                morningFrom.trim() !== '' &&
+                morningTo.trim() !== '' &&
+                afternoonFrom.trim() !== '' &&
+                afternoonTo.trim() !== '' &&
+                eveningFrom.trim() !== '' &&
+                eveningTo.trim() !== ''
+            ) {
+                addDoc(collection(db, "scheduled_time"), {
+                    morningFrom: morningFrom,
+                    morningTo: morningTo,
+                    afternoonFrom: afternoonFrom,
+                    afternoonTo: afternoonTo,
+                    eveningFrom: eveningFrom,
+                    eveningTo: eveningTo,
+                    date: formattedDate,
+                    doctorName: doctorName
+                });
+
+                // show submit message
+                document.querySelector('.time-schedule-alert-message').style.display = 'block';
+
+                // remove submit message
+                setTimeout(() => {
+                    document.querySelector('.time-schedule-alert-message').style.display = 'none';
+
+                    // reset the form
+                    document.getElementById('timeSchedulingForm').reset();
+                }, 3000);
+            } else {
+                // show submit message
+                document.querySelector('.time-schedule-alert-message2').style.display = 'block';
+
+                // remove submit message
+                setTimeout(() => {
+                    document.querySelector('.time-schedule-alert-message2').style.display = 'none';
+                }, 3000);
+            }
+        });
 
 
     </script>
