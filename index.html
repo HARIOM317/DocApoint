@@ -1565,6 +1565,9 @@
             }
 
 
+            const timestamp = serverTimestamp();
+
+
             if (
                 name.trim() !== '' &&
                 phone.trim() !== '' &&
@@ -1581,6 +1584,7 @@
                     date: date,
                     address: address,
                     time: time,
+                    createdAt: timestamp,
                     dateTime: dateTime
                 });
 

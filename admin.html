@@ -131,13 +131,13 @@
                                             class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                                         </div>
                                         <div>
-                                            <h3 class="fs-2">User</h3>
+                                            <h3 class="fs-2">Admin</h3>
                                             <p class="g-font2 justify-text">Discover a seamless way to schedule
                                                 appointments with trusted healthcare professionals. Browse a diverse
                                                 range of
                                                 doctors, choose your preferred specialist, and book effortlessly.</p>
-                                            <a href="#appointment" class="btn btn-danger book-appointment"
-                                                data-section-index="1">Make Appointment</a>
+                                            <a href="#manage-doctors" class="btn btn-danger doctor-management"
+                                                data-section-index="1">Manage Doctors</a>
                                         </div>
                                     </div>
 
@@ -388,7 +388,8 @@
                         <table class="table">
                             <thead>
                                 <th>S. no</th>
-                                <th>Name</th>
+                                <th>Patient Name</th>
+                                <th>Appointment ID</th>
                                 <th>Phone</th>
                                 <th>Age</th>
                                 <th>Address</th>
@@ -733,9 +734,20 @@
 
 
         const getAppointmentsData = async (selectedName) => {
+             // getting current date
+            const currentDate = new Date();
+
+            // Get the components of the date
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(currentDate.getDate()).padStart(2, '0');
+
+            // Format the date as "yyyy-mm-dd"
+            const currentFormattedDate = `${year}-${month}-${day}`;
+            
             const appointmentsCollection = collection(db, "appointments");
             try {
-                onSnapshot(query(appointmentsCollection, where('doctorName', '==', selectedName)), (querySnapshot) => {
+                onSnapshot(query(appointmentsCollection, where('doctorName', '==', selectedName), where('date', '==', currentFormattedDate)), (querySnapshot) => {
                     var users = [];
 
                     querySnapshot.forEach((doc) => {
@@ -762,7 +774,7 @@
         var tBody = document.getElementById('tbody1');
 
 
-        function addItemToTable(name, phone, age, address, time, date) {
+        function addItemToTable(name, appointment_id, phone, age, address, time, date) {
 
             var trow = document.createElement('tr');
             var td1 = document.createElement('td');
@@ -772,15 +784,17 @@
             var td5 = document.createElement('td');
             var td6 = document.createElement('td');
             var td7 = document.createElement('td');
+            var td8 = document.createElement('td');
 
 
             td1.innerHTML = ++stdNo;
             td2.innerHTML = name;
-            td3.innerHTML = phone;
-            td4.innerHTML = age;
-            td5.innerHTML = address;
-            td6.innerHTML = time;
-            td7.innerHTML = date;
+            td3.innerHTML = appointment_id;
+            td4.innerHTML = phone;
+            td5.innerHTML = age;
+            td6.innerHTML = address;
+            td7.innerHTML = time;
+            td8.innerHTML = date;
 
 
             trow.appendChild(td1);
@@ -790,7 +804,11 @@
             trow.appendChild(td5);
             trow.appendChild(td6);
             trow.appendChild(td7);
+            trow.appendChild(td8);
 
+            if (stdNo % 2 == 1) {
+                trow.classList.add("table-row");
+            }
 
             tBody.appendChild(trow);
         }
@@ -800,7 +818,7 @@
             tBody.innerHTML = "";
 
             UsersDocList.forEach(element => {
-                addItemToTable(element.name, element.phone, element.age, element.address, element.time, element.date)
+                addItemToTable(element.name, element.appointment_no, element.phone, element.age, element.address, element.time, element.date)
             });
         }
 

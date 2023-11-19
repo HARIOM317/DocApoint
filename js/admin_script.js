@@ -92,3 +92,13 @@ function closeModal2() {
 
 var closeRegistration2 = document.querySelector('.close2');
 closeRegistration2.addEventListener('click', closeModal2);
+
+
+// Moving on another page
+document.querySelector(".doctor-management").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})

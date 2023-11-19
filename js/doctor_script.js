@@ -78,3 +78,13 @@ function asideSectionTogglerBtn() {
     }
 }
 
+
+// Moving on another page
+document.querySelector(".check-appointment").addEventListener("click", function () {
+    const sectionIndex = this.getAttribute("data-section-index");
+    showSection(this);
+    updateNav(this);
+    removeBackSection();
+    addBackSection(sectionIndex);
+})
+
