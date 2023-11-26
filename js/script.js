@@ -33,6 +33,8 @@ for (let i = 0; i < totalNavList; i++) {
     })
 }
 
+
+// ---------------------------------------------------------
 function removeBackSection() {
     for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.remove("back-section");
@@ -47,20 +49,27 @@ function showSection(element) {
     for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.remove("active");
     }
+
     const target = element.getAttribute("href").split("#")[1];
-    document.querySelector("#" + target).classList.add("active");
+    document.getElementById(target).classList.add("active");
 }
 
 function updateNav(element) {
-    for (let i = 0; i < totalNavList; i++) {
-        navList[i].querySelector("a").classList.remove("active");
-        const target = element.getAttribute("href").split("#")[1];
+    const target = element.getAttribute("href").split("#")[1];
 
-        if (target === navList[i].querySelector("a").getAttribute("href").split("#")[1]) {
-            navList[i].querySelector("a").classList.add("active");
+    for (let i = 0; i < totalNavList; i++) {
+        const navLink = navList[i].querySelector("a");
+        navLink.classList.remove("active");
+
+        if (target === navLink.getAttribute("href").split("#")[1]) {
+            navLink.classList.add("active");
         }
     }
 }
+
+// ---------------------------------------------------------
+
+
 
 const navTogglerBtn = document.querySelector(".nav-toggler"),
     aside = document.querySelector(".aside");
@@ -80,29 +89,51 @@ function asideSectionTogglerBtn() {
 
 
 // Moving on another page
-document.querySelector(".book-appointment").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
+document.querySelectorAll(".book-appointment").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        const sectionIndex = this.getAttribute("data-section-index");
+        showSection(this);
+        updateNav(this);
+        removeBackSection();
+        addBackSection(sectionIndex);
+    });
+});
 
-document.querySelector(".show-appointment-form").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
+document.querySelectorAll(".choose-doctor").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        const sectionIndex = this.getAttribute("data-section-index");
+        showSection(this);
+        updateNav(this);
+        removeBackSection();
+        addBackSection(sectionIndex);
+    });
+});
 
-document.querySelector(".show-login-form").addEventListener("click", function () {
-    const sectionIndex = this.getAttribute("data-section-index");
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-})
+
+document.querySelectorAll(".show-login-form").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        const sectionIndex = this.getAttribute("data-section-index");
+        showSection(this);
+        updateNav(this);
+        removeBackSection();
+        addBackSection(sectionIndex);
+    });
+});
+
+// for dynamic cards of registered doctors
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('show-appointment-form')) {
+        event.preventDefault();
+        const sectionIndex = event.target.getAttribute('data-section-index');
+        showSection(event.target);
+        updateNav(event.target);
+        removeBackSection();
+        addBackSection(sectionIndex);
+    }
+});
 
 // -----------------------------------------------------------------
 
@@ -120,7 +151,6 @@ function closeModal() {
 
 var closeRegistration = document.querySelector('.close');
 closeRegistration.addEventListener('click', closeModal);
-
 // -------------------------------------------------------------------
 
 
@@ -140,4 +170,5 @@ if (mm < 10) {
 
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("date-field").setAttribute("min", today);
+document.getElementById("date-field").setAttribute("max", today);
 
