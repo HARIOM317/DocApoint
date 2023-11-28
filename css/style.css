@@ -1112,6 +1112,37 @@ h3.my-profession {
     display: none;
 }
 
+.morning-time-alert {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.afternoon-time-alert {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.evening-time-alert {
+    width: 100%;
+    background: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+
 /* For dropdown list */
 /* Style for the dropdown container */
 .dropdown-container {
@@ -1271,7 +1302,7 @@ td {
     height: 100%;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;

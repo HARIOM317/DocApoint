@@ -384,18 +384,20 @@
                                     <div class="col-md-6">
                                         <label for="morningFrom" class="time-label">From</label>
                                         <input type="text" name="morningFrom" id="morning-from"
-                                            placeholder="Select Starting Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Starting Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
+
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="morningTo" class="time-label">To</label>
                                         <input type="text" name="morningTo" id="morning-to"
-                                            placeholder="Select Ending Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Ending Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
                                     </div>
+
+                                    <div class="morning-time-alert" style="margin-top: 10px;">⚠️ Please select a valid
+                                        time between 06:00 AM and 12:00 PM!</div>
                                 </div>
                             </div>
 
@@ -406,17 +408,19 @@
                                     <div class="col-md-6">
                                         <label for="afternoonFrom" class="time-label">From</label>
                                         <input type="text" name="afternoonFrom" id="afternoon-from"
-                                            placeholder="Select Starting Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Starting Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="afternoonTo" class="time-label">To</label>
                                         <input type="text" name="afternoonTo" id="afternoon-to"
-                                            placeholder="Select Ending Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Ending Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
+                                    </div>
+
+                                    <div class="afternoon-time-alert" style="margin-top: 10px;">⚠️ Please select a valid
+                                        time between 12:00 PM and 05:00 PM!
                                     </div>
                                 </div>
                             </div>
@@ -428,17 +432,19 @@
                                     <div class="col-md-6">
                                         <label for="eveningFrom" class="time-label">From</label>
                                         <input type="text" name="eveningFrom" id="evening-from"
-                                            placeholder="Select Starting Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Starting Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="eveningTo" class="time-label">To</label>
                                         <input type="text" name="eveningTo" id="evening-to"
-                                            placeholder="Select Ending Time" class="time-input-field"
-                                            onfocus="(this.type='time')" onblur="(this.type='text')" class="input-field"
-                                            required>
+                                            placeholder="Select Ending Time" class="time-input-field input-field"
+                                            onfocus="(this.type='time')" onblur="(this.type='text')" required>
+                                    </div>
+
+                                    <div class="evening-time-alert" style="margin-top: 10px;">⚠️ Please select a valid
+                                        time between 05:00 PM and 11:00 PM!
                                     </div>
                                 </div>
                             </div>
@@ -723,6 +729,104 @@
 
 
 
+        // ---------- XXXXXXXXXX ----- For Time Scheduling Section ----- XXXXXXXXXX ----------
+
+        // --------------- For Time Scheduling Restriction ------------------
+        document.getElementById('morning-from').addEventListener('change', function () {
+            let selectedMorningTime = this.value;
+            let allowedStartTime = '06:00';
+            let allowedEndTime = '12:00';
+
+            if (!isValidTime(selectedMorningTime) || selectedMorningTime < allowedStartTime || selectedMorningTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.morning-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.morning-time-alert').style.display = 'none';
+            }
+        });
+
+        document.getElementById('morning-to').addEventListener('change', function () {
+            let selectedMorningTime = this.value;
+            let allowedStartTime = '06:00';
+            let allowedEndTime = '12:00';
+
+            if (!isValidTime(selectedMorningTime) || selectedMorningTime < allowedStartTime || selectedMorningTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.morning-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.morning-time-alert').style.display = 'none';
+            }
+        });
+
+        document.getElementById('afternoon-from').addEventListener('change', function () {
+            let selectedAfternoonTime = this.value;
+            let allowedStartTime = '12:00';
+            let allowedEndTime = '17:00';
+
+            if (!isValidTime(selectedAfternoonTime) || selectedAfternoonTime < allowedStartTime || selectedAfternoonTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.afternoon-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.afternoon-time-alert').style.display = 'none';
+            }
+        });
+
+        document.getElementById('afternoon-to').addEventListener('change', function () {
+            let selectedAfternoonTime = this.value;
+            let allowedStartTime = '12:00';
+            let allowedEndTime = '17:00';
+
+            if (!isValidTime(selectedAfternoonTime) || selectedAfternoonTime < allowedStartTime || selectedAfternoonTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.afternoon-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.afternoon-time-alert').style.display = 'none';
+            }
+        });
+
+        document.getElementById('evening-from').addEventListener('change', function () {
+            let selectedEveningTime = this.value;
+            let allowedStartTime = '17:00';
+            let allowedEndTime = '23:00';
+
+            if (!isValidTime(selectedEveningTime) || selectedEveningTime < allowedStartTime || selectedEveningTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.evening-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.evening-time-alert').style.display = 'none';
+            }
+        });
+
+        document.getElementById('evening-to').addEventListener('change', function () {
+            let selectedEveningTime = this.value;
+            let allowedStartTime = '17:00';
+            let allowedEndTime = '23:00';
+
+            if (!isValidTime(selectedEveningTime) || selectedEveningTime < allowedStartTime || selectedEveningTime > allowedEndTime) {
+                setTimeout(() => {
+                    document.querySelector('.evening-time-alert').style.display = 'block';
+                    this.value = ''; // Reset the time
+                }, 3000);
+            } else {
+                document.querySelector('.evening-time-alert').style.display = 'none';
+            }
+        });
+
+        // Function to validate the 24-hour time format
+        function isValidTime(time) {
+            var regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+            return regex.test(time);
+        }
 
         // function to store data of time schedule into firebase
         scheduleTime.addEventListener('click', (e) => {
@@ -786,6 +890,8 @@
                 }, 3000);
             }
         });
+
+        // ---------- XXXXXXXXXX ----- ___________________________ ----- XXXXXXXXXX ----------
 
 
     </script>
